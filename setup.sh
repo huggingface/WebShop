@@ -21,12 +21,15 @@ if [ -z "$data" ]; then
   helpFunction
 fi
 
+
 # Install Python Dependencies
-pip install -r requirements.txt;
+pip install -r requirements_env.txt;
 
 # Install Environment Dependencies via `conda`
-conda install -c pytorch faiss-cpu;
-conda install -c conda-forge openjdk=11;
+conda install -c pytorch faiss-cpu -y;
+conda install -c conda-forge openjdk=11 -y;
+
+python -m spacy download en_core_web_sm
 
 # Download dataset into `data` folder via `gdown` command
 mkdir -p data;
@@ -44,9 +47,6 @@ fi
 gdown https://drive.google.com/uc?id=14Kb5SPBk_jfdLZ_CDBNitW98QLDlKR5O # items_human_ins
 cd ..
 
-# Download spaCy large NLP model
-python -m spacy download en_core_web_lg
-
 # Build search engine index
 cd search_engine
 mkdir -p resources resources_100 resources_1k resources_100k
@@ -56,18 +56,19 @@ mkdir -p indexes
 cd ..
 
 # Create logging folder + samples of log data
-get_human_trajs () {
-  PYCMD=$(cat <<EOF
-import gdown
-url="https://drive.google.com/drive/u/1/folders/16H7LZe2otq4qGnKw_Ic1dkt-o3U9Zsto"
-gdown.download_folder(url, quiet=True, remaining_ok=True)
-EOF
-  )
-  python -c "$PYCMD"
-}
+# get_human_trajs () {
+#   PYCMD=$(cat <<EOF
+# import gdown
+# url="https://drive.google.com/drive/u/1/folders/16H7LZe2otq4qGnKw_Ic1dkt-o3U9Zsto"
+# gdown.download_folder(url, quiet=True, remaining_ok=True)
+# EOF
+#   )
+#   python -c "$PYCMD"
+# }
 mkdir -p user_session_logs/
 cd user_session_logs/
 echo "Downloading 50 example human trajectories..."
-get_human_trajs
+# get_human_trajs
+gdown https://drive.google.com/drive/u/1/folders/16H7LZe2otq4qGnKw_Ic1dkt-o3U9Zsto
 echo "Downloading example trajectories complete"
 cd ..

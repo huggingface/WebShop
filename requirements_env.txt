@@ -1,0 +1,27 @@
+# Minimal requirements for the text environment
+beautifulsoup4>=4.11.1
+Flask>=3.0.3
+gdown
+gradio
+gym==0.23.1 # Must pin!
+numpy
+pandas
+pyserini==0.17.0 # Must pin!
+requests
+rich>=12.4.4
+selenium>=4.2.0
+thefuzz>=0.19.0
+torch>2.0
+tqdm>=4.64.0
+
+# Other packages used for training
+# cleantext==1.1.4
+# env==0.1.0
+# pytest
+# PyYAML==6.0
+# rank_bm25>=0.2.2
+# requests_mock
+# scikit_learn==1.1.1
+# spacy==3.3.0
+# train==0.0.5
+# transformers==4.19.2

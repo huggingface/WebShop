@@ -39,9 +39,10 @@ WebShop is a simulated e-commerce website environment with 1.18 million real-wor
 **Hugging Face Demo**: Devise your own natural language query for a product and ask for an agent trained with WebShop to find it on Amazon or eBay, deployed as a 🤗 Hugging Face space [here](https://huggingface.co/spaces/webshop/amazon_shop)!
 
 **Python Package**: If you would like to interact with the `WebShop` environment interface instead of installing and setting up the source code, you can install the `webshop` python package directly. The [project page](https://pypi.org/project/webshop/) contains (WIP) documentation on how to use the library, and the library can be installed via `pip install webshop`.
+
 ## 🚀 Setup
 Our code is implemented in Python. To setup, do the following:
-1. Install [Python 3.8.13](https://www.python.org/downloads/release/python-3813/)
+1. Install [Python 3.10](https://www.python.org/downloads/release/python-3100/)
 2. Install [Java](https://www.java.com/en/download/)
 3. Download the source code:
 ```sh
@@ -49,7 +50,7 @@ Our code is implemented in Python. To setup, do the following:
 ```
 4. Create a virtual environment using [Anaconda](https://anaconda.org/anaconda/python) and activate it
 ```sh
-> conda create -n webshop python=3.8.13
+> conda create -n webshop python=3.10
 > conda activate webshop
 ```
 5. Install requirements into the `webshop` virtual environment via the `setup.sh` script
@@ -75,6 +76,34 @@ DEFAULT_FILE_PATH = join(BASE_DIR, '../data/items_shuffle.json')
 7. (Optional) Download ResNet image feature files [here](https://drive.google.com/drive/folders/1jglJDqNV2ryrlZzrS0yOEk-aRAcLAhNw?usp=sharing) and put into `data/` for running models that require image features.
 
 8. (Optional) Human demonstration data and be downloaded [here](https://drive.google.com/file/d/1GWC8UlUzfT9PRTRxgYOwuKSJp4hyV1dp/view?usp=sharing).
+
+Finally test your installationworks by running:
+
+```shell
+./run_web_agent_text_env.sh
+```
+
+This should output somtething like:
+
+```shell
+Products loaded.
+Keys cleaned.
+Attributes loaded.
+100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1000/1000 [00:00<00:00, 129238.43it/s]
+Loaded 6910 goals.
+WebShop [SEP] Instruction: [SEP] Find me slim fit, machine wash women's jumpsuits, rompers & overalls with short sleeve, high waist, polyester spandex for daily wear with color: green stripe, and size: large, and price lower than 50.00 dollars [SEP] Search
+Available actions:
+{'has_search_bar': True, 'clickables': ['search']}
+Taking action "search[shoes]" -> Reward = 0.0
+Instruction: [SEP] Find me slim fit, machine wash women's jumpsuits, rompers & overalls with short sleeve, high waist, polyester spandex for daily wear with color: green stripe, and size: large, and price lower than 50.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results:
+39) [SEP] Next > [SEP] B094RBNS2K [SEP] Mens Running Tennis Blade Shoes Lightweight Casual Walking Sneakers Mesh Breathable Sport Sneakers Sheet Shoes [SEP] $27.0 [SEP] B09HH6P68W [SEP] MAPOLO Hand Drawn Christmas Elements Collection Men's Boys Casual Walking Shoes Sneaker 
+Lightweight Stylish Athletic Tennis Sports Running Shoes for Outdoor Hiking Travel Driving [SEP] $100.0 [SEP] B09QPX97VW [SEP] Sandals For Women Gold Sandals Slippers Sandy From Grease Red Shoes Strap Platforms Golf Shoes Jeans Stretch Short Sleeve Shirts Midi Skirts Women Suede
+Pumps [SEP] $100.0 [SEP] B08HN55NGW [SEP] Prepac Entryway Shoe Cubby Console, 60", Drifted Gray [SEP] $280.99 [SEP] B001J6NXFS [SEP] TOMS Womens Classic Canvas Slip-On,White,5.5 M US [SEP] $76.24 [SEP] B09QXF3V3X [SEP] DEUVOUM Summer Trend Mesh Shoes Men's Sports Shoes Solid 
+Color Lace-Up Sneakers Fashion All-Match Walking Shoes Outdoor Hiking Shoes Non-Slip Shock-Absorbing Casual Sports Shoes [SEP] $100.0 [SEP] B01JJR8GJG [SEP] Cat Footwear Men's Carnaby Canvas Fashion Sneaker [SEP] $79.95 [SEP] B07JZ5HVN6 [SEP] Women's Ladies Sneakers,Limsea 
+Fashion Classic Boots Ankle Short Leather Shoes [SEP] $6.63 to $8.37 [SEP] B09S3TWKSC [SEP] Womens Summer Sandals Casual Bohemia Gladiator Wedge Shoes Outdoor Loafers Open Toe Sandals Buckle Sandals Hollow Out Shoes [SEP] $6.99 [SEP] B09PKHJN8P [SEP] Pinsofy Underwater Ball Arm 
+Adapter, Diving Ball Head Base Adapter High Strength for Underwater Photography [SEP] $18.36
+...
+```
 
 ## 🛠️ Usage
 The WebShop environment can be rendered in two modes - `html` and `simple` - each of which offer a different observation space. The `simple` mode strips away the extraneous meta-data that the `html` mode includes to make model training and evaluation easier.

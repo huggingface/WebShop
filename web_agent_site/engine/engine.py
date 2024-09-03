@@ -8,9 +8,9 @@ from collections import defaultdict
 from ast import literal_eval
 from decimal import Decimal
 
-import cleantext
+# import cleantext
 from tqdm import tqdm
-from rank_bm25 import BM25Okapi
+# from rank_bm25 import BM25Okapi
 from flask import render_template_string
 from rich import print
 from pyserini.search.lucene import LuceneSearcher
